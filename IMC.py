@@ -1,17 +1,23 @@
-import os
-resultado = []
 def question_maker(question):
     while True:
         try:
-            value = float(input(question))
+            value = int(input(question))
             return value
         except:
             print('O valor inserido precisa ser um numero válido.')
+            
+resultado = []
+size = question_maker("Quantos IMC você irá calcular? ")
+for i in range(size):
+    entrada = input(f"Qual a altura e peso numero {i+1}: ")
+    stage = entrada.split(',')
+    resultado.append(round(float(stage[1])/float(stage[0])**2,2))
+    
+texto = ''
+for z in range(size):
+    if z == size-1:
+        texto+= f'{resultado[z]}'
+    else:
+        texto+= f'{resultado[z]} '
 
-for i in range(3):
-    altura = question_maker(f"Qual a altura numero {i+1}: ")
-    peso = question_maker(f"Qual o peso {i+1}: ")
-    os.system('cls')
-    resultado.append(round(peso/altura**2,2))
-
-print(resultado[0],resultado[1],resultado[2])
+print(texto)
